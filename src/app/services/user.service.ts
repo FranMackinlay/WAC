@@ -20,7 +20,7 @@ export class UsersSrv {
   }
 
   signIn(user: User): Observable<any> {
-    let API_URL = this.apiUrl;
+    let API_URL = `${this.apiUrl}/signin`;
     return this.http.post(API_URL, user, { headers: this.headers }).pipe(
       catchError(this.error)
     )
@@ -42,6 +42,7 @@ export class UsersSrv {
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
+    if (error.status === 401) alert('Incorrect username or password')
     console.log(errorMessage);
     return throwError(errorMessage);
   }
