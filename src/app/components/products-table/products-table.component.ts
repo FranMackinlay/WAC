@@ -26,7 +26,6 @@ export class ProductsTableComponent implements OnInit {
   }
 
   ngOnChanges(products: SimpleChanges) {
-    console.log(`products`, products.products.currentValue);
     this.dataSource = products.products.currentValue;
   }
 
