@@ -1,0 +1,52 @@
+<div id="product-details-component">
+  <div class="product-card-container" class="col-md-5 df jucc w-100">
+    <mat-card class="p-2 w-50">
+      <mat-card-content>
+        <div class="header">
+          <P>Edit {{productToUpdate.name}}</P>
+        </div>
+        <form (ngSubmit)="onSubmit()" name="productForm" [formGroup]="productForm">
+          <div class="nameInput">
+            <mat-form-field class="full-width w-100" appearance="outline">
+              <mat-label>Name</mat-label>
+              <input formControlName="name" matInput placeholder="Enter name" required />
+              <mat-error *ngIf="!productForm.controls['name'].valid">
+                Name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="full-width w-100" appearance="outline">
+              <mat-label>Status</mat-label>
+              <input formControlName="status" matInput [type]="'text'" required />
+              <mat-error *ngIf="!productForm.controls['status'].valid">
+                Status is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="full-width w-100" appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea formControlName="description" matInput required> </textarea>
+              <mat-error *ngIf="!productForm.controls['description'].valid">
+                Description is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="full-width w-100" appearance="outline">
+              <mat-label>Color</mat-label>
+              <input formControlName="color" matInput [type]="'text'" required />
+              <mat-error *ngIf="!productForm.controls['color'].valid">
+                Color is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="submit-btn df jucc">
+            <button class="btn btn-secondary">Save changes</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
