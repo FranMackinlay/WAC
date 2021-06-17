@@ -62,7 +62,7 @@ let Products = [
 
 let Users = [
   {
-    id: '12345678',
+    _id: '12345678',
     name: 'Francisco',
     email: 'franmackinlay@gmail.com',
     password: bcrypt.hashSync('123456', 8),
@@ -78,9 +78,17 @@ export function updateProduct(product) {
   return Products;
 }
 
-export function updateUser(user) {
-  Users.forEach((u, i) => u.id === user.id ? Users[i] = user : p);
-  return Users.find(u => u.id === user.id);
+export function findAndUpdateUser(user) {
+  const updatedUser = user;
+  const userToUpdate = findUser(user._id, true);
+
+  if (!bcrypt.compareSync(updatedUser.password, userToUpdate.password)) {
+    updatedUser.password = bcrypt.hashSync(user.password, 8);
+  }
+
+  Users.forEach((u, i) => u.id === user.id ? Users[i] = updatedUser : u);
+
+  return findUser(user._id, true);
 }
 
 export function createUser(newUser) {
@@ -94,9 +102,15 @@ export function createUser(newUser) {
   return newUser;
 }
 
-export function findUser(email) {
-  const user = Users.find(user => user.email === email);
+export function findUser(_id, bool) {
 
+  const user = Users.find(user => user._id === _id);
+  !bool && delete user.password;
+  return user;
+}
+
+export function findUserByEmail(email) {
+  const user = Users.find(user => user.email === email);
   return user;
 }
 
