@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/login-component/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatCardModule } from '@angular/material/card';
 import { ProductsSrv } from './services/product.service';
