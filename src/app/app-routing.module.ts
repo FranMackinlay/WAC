@@ -10,6 +10,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
+
+
 
 
 
@@ -21,17 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [BrowserModule,
-    CommonModule,
-    RouterModule.forRoot(routes),
-    FormsModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatToolbarModule
-  ],
+  imports: [BrowserModule, RouterModule.forRoot(routes)],
   exports: [
     RouterModule,
     CommonModule,
@@ -41,7 +36,10 @@ const routes: Routes = [
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTableModule,
+    MatGridListModule,
+    MatButtonModule
   ]
 })
 
