@@ -8,7 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login-component/login.component';
 import { DashboardComponent } from './components/dashboard-component/dashboard.component';
 import { MatCardModule } from '@angular/material/card';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ProductsSrv } from './services/product.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule
   ],
   exports: [
     CommonModule,
@@ -38,7 +40,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   schemas: [
     // CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers: [],
+  providers: [ProductsSrv],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
