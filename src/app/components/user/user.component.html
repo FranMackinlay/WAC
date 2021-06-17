@@ -1,0 +1,43 @@
+<div id="user-details-component">
+  <button mat-raised-button color="primary" class="m-3" (click)="onClickGoBack()">Go back</button>
+  <div class="product-card-container col-md-4 offset-4 mt-3">
+    <mat-card class="p-2">
+      <mat-card-content>
+        <div class="header">
+          <P>Edit {{this.user?.name}}</P>
+        </div>
+        <form (ngSubmit)="onSubmit()" name="userForm" [formGroup]="userForm">
+          <div class="nameInput">
+            <mat-form-field class="full-width w-100" appearance="outline">
+              <mat-label>Name</mat-label>
+              <input formControlName="name" matInput placeholder="Enter name" required />
+              <mat-error *ngIf="!userForm.controls['name'].valid">
+                name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="emailInput">
+            <mat-form-field class="full-width w-100" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input formControlName="email" matInput [type]="'text'" required />
+              <mat-error *ngIf="!userForm.controls['email'].valid">
+                Email is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="passwordInput">
+            <mat-form-field class="full-width w-100" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required />
+              <button mat-icon-button matSuffix>
+              </button>
+            </mat-form-field>
+          </div>
+          <div class="submit-btn df jucc">
+            <button class="btn btn-secondary">Save changes</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
