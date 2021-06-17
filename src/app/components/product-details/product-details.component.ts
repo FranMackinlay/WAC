@@ -42,7 +42,6 @@ export class ProductDetailsComponent implements OnInit {
 
   onSubmit(): void {
     if (!this.productForm.valid) return alert('Please check the form again.');
-
     this.productToUpdateChange.emit(this.productForm.value);
   }
 

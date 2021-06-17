@@ -3,7 +3,7 @@
     <mat-card class="p-2 w-50">
       <mat-card-content>
         <div class="header">
-          <P>Edit {{productToUpdate.name}}</P>
+          <P>Edit {{productToUpdate?.name}}</P>
         </div>
         <form (ngSubmit)="onSubmit()" name="productForm" [formGroup]="productForm">
           <div class="nameInput">
