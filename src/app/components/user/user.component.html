@@ -10,8 +10,8 @@
           <div class="nameInput">
             <mat-form-field class="full-width w-100" appearance="outline">
               <mat-label>Name</mat-label>
-              <input formControlName="name" matInput placeholder="Enter name" required />
-              <mat-error *ngIf="!userForm.controls['name'].valid">
+              <input *ngIf="this.user !== undefined" formControlName="name" matInput placeholder="Enter name" required />
+              <mat-error *ngIf="!userForm.controls['name']?.valid">
                 name is required
               </mat-error>
             </mat-form-field>
@@ -19,8 +19,8 @@
           <div class="emailInput">
             <mat-form-field class="full-width w-100" appearance="outline">
               <mat-label>Email</mat-label>
-              <input formControlName="email" matInput [type]="'text'" required />
-              <mat-error *ngIf="!userForm.controls['email'].valid">
+              <input *ngIf="this.user !== undefined" formControlName="email" matInput [type]="'text'" required />
+              <mat-error *ngIf="!userForm.controls['email']?.valid">
                 Email is required
               </mat-error>
             </mat-form-field>
