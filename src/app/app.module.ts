@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ProductsSrv } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersSrv } from './services/user.service';
+import { EventBrokerService } from './services/event-broker.service';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { UsersSrv } from './services/user.service';
   schemas: [
     // CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers: [ProductsSrv, UsersSrv],
+  providers: [ProductsSrv, UsersSrv, EventBrokerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
