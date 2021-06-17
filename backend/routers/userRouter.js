@@ -1,12 +1,13 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import expressAsyncHandler from 'express-async-handler';
-import { findUser, createUser } from '../data.js';
+import { findUser, createUser, updateUser } from '../data.js';
 import { generateToken } from '../utils.js';
 
 const userRouter = express.Router();
 
 userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
+
   let user = findUser(req.body.email);
 
   if (!user) {
@@ -25,6 +26,12 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
     }
   }
   return res.status(401).send({ message: 'Invalid user email or password' });
+}));
+
+userRouter.post('/:userId', expressAsyncHandler(async (req, res) => {
+  let updatedUser = updateUser(req.body);
+
+  return res.status(200).send({ updatedUser });
 }));
 
 

@@ -60,12 +60,12 @@ let Products = [
   },
 ];
 
-let users = [
+let Users = [
   {
     id: '12345678',
     name: 'Francisco',
     email: 'franmackinlay@gmail.com',
-    password: bcrypt.hashSync('1234', 8),
+    password: bcrypt.hashSync('123456', 8),
   },
 ]
 
@@ -78,16 +78,21 @@ export function updateProduct(product) {
   return Products;
 }
 
-export function createUser(newUser) {
-  const userExists = users.find(user => user.id === newUser.id);
+export function updateUser(user) {
+  Users.forEach((u, i) => u.id === user.id ? Users[i] = user : p);
+  return Users.find(u => u.id === user.id);
+}
 
-  if (!userExists) users.push(newUser);
+export function createUser(newUser) {
+  const userExists = Users.find(user => user.id === newUser.id);
+
+  if (!userExists) Users.push(newUser);
 
   return newUser;
 }
 
 export function findUser(email) {
-  const user = users.find(user => user.email === email);
+  const user = Users.find(user => user.email === email);
 
   return user;
 }
