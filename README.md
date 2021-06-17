@@ -2,6 +2,34 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
 
+
+## Starting the projects
+
+1. Clone Repo
+
+2. Install frontend dependencies
+```
+wac~ npm i
+```
+3. Start frontend
+```
+wac~ npm start
+```
+4. Move to backend
+```
+wac~ cd backend
+```
+
+5. Install backend dependencies
+```
+backend~ npm i
+```
+
+6. Start backend
+```
+backend~ npm start
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
