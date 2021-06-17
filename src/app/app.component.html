@@ -3,7 +3,7 @@
     <mat-toolbar class="df aliic jucb">
       <img class="logo" src="https://www.wearecactus.com/static/img/logo.png" alt="">
       <div class="user-info">
-        <span class="user-name">
+        <span class="user-name mr-2">
           {{this.user.name || this.user.email || 'Login'}}
         </span>
         <button (click)="onClickLogout()" *ngIf="this.user.email" class="btn btn-danger">Logout</button>
