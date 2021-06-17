@@ -10,6 +10,7 @@ import { DashboardComponent } from './components/dashboard-component/dashboard.c
 import { MatCardModule } from '@angular/material/card';
 import { ProductsSrv } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
+import { UsersSrv } from './services/user.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports: [
     CommonModule,
@@ -40,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
   schemas: [
     // CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers: [ProductsSrv],
+  providers: [ProductsSrv, UsersSrv],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
