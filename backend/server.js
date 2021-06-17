@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
 import productsRouter from './routers/productsRouter.js';
+import userRouter from './routers/userRouter.js';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(express.static('build'));
 
 
 app.use('/api/products', productsRouter);
+app.use('/api/users', userRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
