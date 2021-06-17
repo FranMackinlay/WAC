@@ -1,6 +1,6 @@
 import { User } from './user.interface';
 
-export interface HttpUserResponse {
+export interface HttpUserResponse extends User {
   token: any;
   updatedUser: User;
 }
