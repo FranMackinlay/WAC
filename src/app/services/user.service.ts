@@ -10,7 +10,7 @@ import { User } from '../interfaces/user.interface';
 })
 export class UsersSrv {
 
-  apiUrl: string = 'http://localhost:5000/api/users';
+  apiUrl: string = 'https://wac-heroku.herokuapp.com/api/users';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
