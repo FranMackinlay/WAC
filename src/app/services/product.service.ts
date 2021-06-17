@@ -2,17 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-
-export interface Product {
-  id: number;
-  name: string;
-  description: string;
-  color: string;
-  size: string;
-  status: string;
-  created_at: string;
-  updated_at: string;
-}
+import { Product } from '../interfaces/product.interface';
 
 @Injectable({
   providedIn: 'root'
