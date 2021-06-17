@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpUserResponse } from './interfaces/http-user-response.interface';
 import { User } from './interfaces/user.interface';
 import { EventBrokerService, IEventListener } from './services/event-broker.service';
 

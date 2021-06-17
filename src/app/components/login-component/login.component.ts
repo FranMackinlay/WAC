@@ -2,7 +2,6 @@ import { Injectable, Input, Output } from '@angular/core';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
-import { HttpUserResponse } from 'src/app/interfaces/http-user-response.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { EventBrokerService } from 'src/app/services/event-broker.service';
 import { UsersSrv } from 'src/app/services/user.service';
