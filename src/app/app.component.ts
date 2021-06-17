@@ -28,7 +28,6 @@ export class AppComponent {
   }
 
   goToUserProfile() {
-    console.log(`this.user`, this.user);
     this.route.navigate([`/user/${this.user._id}`]);
   }
 
