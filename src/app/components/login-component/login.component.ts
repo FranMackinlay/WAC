@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    user.token && this.router.navigate(['/dashboard']);
   }
 
   loginForm: FormGroup = this.fb.group({
@@ -40,6 +42,7 @@ export class LoginComponent implements OnInit {
 
     this.userSrv.signIn(this.loginForm.value).subscribe((data: User) => {
       this.user = data;
+      localStorage.setItem('user', JSON.stringify(this.user));
       this._eventBroker.emit<User>('user-login', this.user);
       this.router.navigate(['/dashboard'], { state: { data: { token: this.user.token } } });
     });

@@ -5,6 +5,8 @@ import { ProductsSrv } from 'src/app/services/product.service';
 import { Product } from 'src/app/interfaces/product.interface';
 import { Router } from '@angular/router';
 import { HttpProductResponse } from 'src/app/interfaces/http-product-response.interface';
+import { EventBrokerService } from 'src/app/services/event-broker.service';
+import { User } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,11 +35,12 @@ export class DashboardComponent implements OnInit {
   selectedProduct!: Product;
   products!: Product[];
 
-  constructor(private productService: ProductsSrv, private cdr: ChangeDetectorRef) { }
+  constructor(private productService: ProductsSrv, private cdr: ChangeDetectorRef, private router: Router, private _eventBroker: EventBrokerService) { }
 
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    // if (!window.history.state.data?.token || !user.token) this.route.navigate(['/login']);
+    if (!user.token) this.router.navigate(['/login']);
+    this._eventBroker.emit<User>('user-login', user);
     this.state = 'closed';
   }
 

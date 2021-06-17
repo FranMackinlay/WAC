@@ -29,6 +29,7 @@ export class AppComponent {
 
   onClickLogout() {
     this.user = {};
+    localStorage.removeItem('user');
     this.route.navigate(['/login'])
   }
 }
