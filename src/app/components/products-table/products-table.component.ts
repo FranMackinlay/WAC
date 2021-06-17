@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Product } from 'src/app/interfaces/product.interface';
+import { ProductsSrv } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-products-table',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsTableComponent implements OnInit {
 
-  constructor() { }
+  @Input() products!: Product[];
+  @Output() selectedProductChange = new EventEmitter<Product>();
+
+  dataSource!: Product[];
+  selectedProduct!: Product;
+  displayedColumns: string[] = [];
+
+  constructor(private productService: ProductsSrv) { }
 
   ngOnInit(): void {
+    this.displayedColumns = ['name', 'status', 'edit'];
+    this.productService.getProducts().subscribe((response: any) => {
+      this.dataSource = response.products;
+    });
   }
+
+  ngOnChanges(products: SimpleChanges) {
+    console.log(`products`, products.products.currentValue);
+    this.dataSource = products.products.currentValue;
+  }
+
+  onClickEdit(element: any) {
+    this.selectedProduct = element;
+    this.selectedProductChange.emit(this.selectedProduct);
+  }
+
 
 }
