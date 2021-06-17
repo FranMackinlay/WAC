@@ -86,7 +86,10 @@ export function updateUser(user) {
 export function createUser(newUser) {
   const userExists = Users.find(user => user.id === newUser.id);
 
-  if (!userExists) Users.push(newUser);
+  if (!userExists) {
+    newUser.name = newUser.email.split('@')[0];
+    Users.push(newUser);
+  }
 
   return newUser;
 }
