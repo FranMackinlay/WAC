@@ -17,7 +17,7 @@ import { User } from 'src/app/interfaces/user.interface';
         width: 0,
         opacity: 0,
         position: 'absolute',
-        right: '-20em'
+        zIndex: '-1'
       })),
       state('open', style({
         opacity: 1,

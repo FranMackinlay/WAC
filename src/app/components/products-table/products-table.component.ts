@@ -16,7 +16,8 @@ export class ProductsTableComponent implements OnInit {
   selectedProduct!: Product;
   displayedColumns: string[] = [];
 
-  constructor(private productService: ProductsSrv) { }
+  constructor(private productService: ProductsSrv) {
+  }
 
   ngOnInit(): void {
     this.displayedColumns = ['name', 'status', 'edit'];
@@ -24,6 +25,8 @@ export class ProductsTableComponent implements OnInit {
       this.dataSource = response.products;
     });
   }
+
+
 
   ngOnChanges(products: SimpleChanges) {
     this.dataSource = products.products.currentValue;

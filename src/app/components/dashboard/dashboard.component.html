@@ -1,4 +1,4 @@
-<div id="dasboard-component" class="df aliic juce mt-5">
-  <app-products-table [products]="this.products" (selectedProductChange)="onChangeSelectedProduct($event)" class="col-md-5 col-10 mt-5 text-center"></app-products-table>
-  <app-product-details [@widthGrow]="state" class="col-md-5" [productToUpdate]="selectedProduct" (productToUpdateChange)="onSaveChanges($event)"></app-product-details>
+<div id="dasboard-component" class="df alist juce mt-3 flww">
+  <app-products-table [products]="this.products" (selectedProductChange)="onChangeSelectedProduct($event)" class="col-md-8 mb-1 col-11 text-center"></app-products-table>
+  <app-product-details [@widthGrow]="state" class="col-md-3 col-11" [productToUpdate]="selectedProduct" (productToUpdateChange)="onSaveChanges($event)"></app-product-details>
 </div>
