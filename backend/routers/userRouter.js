@@ -10,10 +10,14 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
   let user = findUserByEmail(req.body.email);
 
   if (!user) {
-    const userCreated = createUser({ _id: Math.floor(100000000 + Math.random() * 800000000), name: req.body.name, email: req.body.email, password: bcrypt.hashSync(req.body.password, 8) });
+    const userCreated = createUser({
+      _id: Math.floor(100000000 + Math.random() * 800000000),
+      name: req.body.email.split('@')[0],
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password, 8)
+    });
     user = userCreated;
   }
-
   if (user) {
     if (bcrypt.compareSync(req.body.password, user.password)) {
       return res.send({
@@ -28,13 +32,13 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
 }));
 
 userRouter.get('/:_id', expressAsyncHandler(async (req, res) => {
-  const user = findUser(req.params._id, true);
+  const user = findUser(req.params._id);
   return res.status(200).send({ user });
 }));
 
 userRouter.put('/:_id', expressAsyncHandler(async (req, res) => {
   const user = findAndUpdateUser(req.body);
-
+  user.token = generateToken(user);
   return res.status(200).send({ user });
 }));
 

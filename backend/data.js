@@ -80,32 +80,25 @@ export function updateProduct(product) {
 
 export function findAndUpdateUser(user) {
   const updatedUser = user;
-  const userToUpdate = findUser(user._id, true);
+  const oldUser = findUserByEmail(user.email);
 
-  if (!bcrypt.compareSync(updatedUser.password, userToUpdate.password)) {
-    updatedUser.password = bcrypt.hashSync(user.password, 8);
-  }
-
-  Users.forEach((u, i) => u.id === user.id ? Users[i] = updatedUser : u);
-
-  return findUser(user._id, true);
+  updatedUser.password = oldUser.password;
+  Users.forEach((u, i) => u._id === user._id ? Users[i] = updatedUser : u);
+  return Users.find(user => user._id === updatedUser._id);
 }
 
 export function createUser(newUser) {
-  const userExists = Users.find(user => user.id === newUser.id);
+  const userExists = Users.find(user => user._id === newUser._id);
 
   if (!userExists) {
-    newUser.name = newUser.email.split('@')[0];
     Users.push(newUser);
   }
 
   return newUser;
 }
 
-export function findUser(_id, bool) {
-
+export function findUser(_id) {
   const user = Users.find(user => user._id === _id);
-  !bool && delete user.password;
   return user;
 }
 
