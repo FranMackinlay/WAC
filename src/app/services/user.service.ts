@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Product } from '../interfaces/product.interface';
 import { User } from '../interfaces/user.interface';
 
@@ -15,8 +15,8 @@ export class UsersSrv {
 
   constructor(private http: HttpClient) { }
 
-  getUser() {
-    return this.http.get(`${this.apiUrl}`);
+  getUser(_id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${_id}`);
   }
 
   signIn(user: User): Observable<any> {
@@ -28,7 +28,7 @@ export class UsersSrv {
 
   // Update
   updateUser(user: User): Observable<any> {
-    let API_URL = `${this.apiUrl}/${user.id}`;
+    let API_URL = `${this.apiUrl}/${user._id}`;
     return this.http.put(API_URL, user, { headers: this.headers }).pipe(
       catchError(this.error)
     )
