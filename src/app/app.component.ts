@@ -17,13 +17,19 @@ export class AppComponent {
   private _myEventListener: IEventListener;
 
   constructor(private _eventBroker: EventBrokerService, private route: Router) {
+    const localUser = JSON.parse(localStorage.getItem('user') || '{}');
     this._myEventListener = _eventBroker.listen<User>('user-login', (user: User) => {
-      this.user = user;
+      this.user = user || localUser;
     });
   }
 
   public ngOnDestroy() {
     this._myEventListener.ignore();
+  }
+
+  goToUserProfile() {
+    console.log(`this.user`, this.user);
+    this.route.navigate([`/user/${this.user._id}`]);
   }
 
   onClickLogout() {
