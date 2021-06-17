@@ -4,6 +4,7 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
 import { ProductsSrv } from 'src/app/services/product.service';
 import { Product } from 'src/app/interfaces/product.interface';
 import { HttpProductResponse } from 'src/app/interfaces/http-product-response.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,9 +33,10 @@ export class DashboardComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private productService: ProductsSrv, private cdr: ChangeDetectorRef) { }
+  constructor(private fb: FormBuilder, private productService: ProductsSrv, private cdr: ChangeDetectorRef, private route: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    if (!window.history.state.data?.token) this.route.navigate(['/login']);
     this.state = 'closed';
     this.displayedColumns = ['name', 'status', 'edit'];
     this.productService.getProducts().subscribe((response: any) => {
