@@ -1,10 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { trigger, transition, style, animate, state } from '@angular/animations';
-import { ProductsSrv, Product } from 'src/app/services/product.service';
-
-
-
+import { ProductsSrv } from 'src/app/services/product.service';
+import { Product } from 'src/app/interfaces/product.interface';
+import { HttpProductResponse } from 'src/app/interfaces/http-product-response.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -71,7 +70,8 @@ export class DashboardComponent implements OnInit {
     if (!this.productForm.valid) {
       return alert('Please check the form again.');
     }
-    this.productService.updateProduct(this.productForm.value).subscribe(data => {
+
+    this.productService.updateProduct(this.productForm.value).subscribe((data: HttpProductResponse) => {
       this.dataSource = data.products;
       this.changeState();
     });
