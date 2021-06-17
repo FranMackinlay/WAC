@@ -11,13 +11,13 @@ const app = express();
 
 const __dirname = path.resolve();
 
-const publicPath = path.join(__dirname, '..', 'public');
+const publicPath = path.join(__dirname, '..', 'dist/WAC');
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static('build'));
+app.use(express.static('dist/WAC'));
 
 
 app.use('/api/products', productsRouter);
