@@ -12,6 +12,7 @@ import { ProductsSrv } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersSrv } from './services/user.service';
 import { EventBrokerService } from './services/event-broker.service';
+import { ProductsTableComponent } from './components/products-table/products-table.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { EventBrokerService } from './services/event-broker.service';
     AppComponent,
     LoginComponent,
     DashboardComponent,
+    ProductsTableComponent,
   ],
   imports: [
     CommonModule,
