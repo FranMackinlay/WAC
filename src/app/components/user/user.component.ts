@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
 
   getUserInfo(_id: string) {
     this.userService.getUser(_id).subscribe((res) => {
-      this.user = res.user;
+      this.user = res.user ? res.user : JSON.parse(localStorage.getItem('user') || '{}');
       this._eventBroker.emit<User>('user-login', this.user);
       this.hydrateForm(this.user);
     });
@@ -50,23 +50,22 @@ export class UserComponent implements OnInit {
   }
 
   formHasChanged(): boolean {
-    debugger;
     return (
       this.userForm.value.name !== this.user.name ||
-      this.userForm.value.email !== this.user.email ||
-      this.userForm.value.password !== this.user.password
+      this.userForm.value.email !== this.user.email
     )
   }
 
   onSubmit(): void {
     if (this.userForm.errors) return alert('Please check the form again.');
-    console.log(`!this.formHasChanged()`, !this.formHasChanged());
-    debugger;
+
     if (!this.formHasChanged()) {
       alert('No changes');
     } else {
       this.userService.updateUser(this.userForm.value).subscribe((res) => {
+        localStorage.removeItem('user');
         this.user = res.user;
+        localStorage.setItem('user', JSON.stringify(this.user));
         this._eventBroker.emit<User>('user-login', this.user);
       });
     }
